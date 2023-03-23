@@ -1,10 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from reviews.models import Ticket
 
-# def main(request):
-
-#     context = {}
-#     return render(request, "blog/main.html", context)
+def main(request):
+    return render(request, "reviews/index.html")
 
 def index(request):
-    return render(request, "reviews/index.html")
+    tickets = Ticket.objects.all()
+    return render(request, "reviews/index.html", context = {"tickets": tickets})
+
+def product_detail(request, slug):
+    product = get_object_or_404(Ticket, slug=slug)
+    return HttpResponse(product.description)

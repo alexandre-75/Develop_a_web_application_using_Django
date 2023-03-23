@@ -1,10 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Litreview</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <div class="navigation_bar">
+        <h1>Litreview</h1>
+        <a href="{% url 'reviews-main' %}"><h1>Flux</h1></a>
+        <a href="{% url 'reviews-posts' %}"><h1>Posts</h1></a>
+        <a href="{% url 'reviews-subscriptions' %}"><h1>Subscriptions</h1></a>
+        <a href="{% url 'reviews-logout' %}"><h1>Logout</h1></a>
+    </div>
 {% block content %}
 {% endblock %}
 </body>
