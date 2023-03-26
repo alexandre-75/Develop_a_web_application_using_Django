@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def homepage_welcome(request):
+    return render(request, "accounts/homepage.html")
+
+def sign_up(request):
+    return render(request, "accounts/sign_up.html")

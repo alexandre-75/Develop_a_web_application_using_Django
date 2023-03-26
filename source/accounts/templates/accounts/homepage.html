@@ -1,0 +1,15 @@
+{% extends 'basewelcome.html' %}
+
+{% block welcome %}
+
+<div class="content_welcome">
+    <div class="login">
+    </div>
+    <div class="sing_up">
+        <p>Register now</p>
+        <a href="{% url 'accounts_sign_up' %}">Sign Up</a>
+    </div>
+</div>
+
+{% endblock %}
+
