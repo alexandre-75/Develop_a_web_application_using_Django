@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from reviews.models import Ticket
+from django.contrib.auth import logout
 
 def main(request):
     return render(request, "reviews/index.html")
@@ -12,3 +13,7 @@ def index(request):
 def product_detail(request, slug):
     product = get_object_or_404(Ticket, slug=slug)
     return HttpResponse(product.description)
+
+def logout_user(request):
+    logout(request)
+    return render(request, "reviews/logout.html")
