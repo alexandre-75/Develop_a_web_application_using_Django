@@ -3,6 +3,31 @@
 {% block welcome %}
 
 <div class="content_welcome">
+    <h1>register</h1>
+    <div class="form_sign_up">
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+
+            <label for="password1">Password</label>
+            <input type="password" name="password1" id="password1">
+
+            <label for="password2">Confirm Password</label>
+            <input type="password" name="password2" id="password2">
+
+            {% if error %}
+            <small style="color: brown;">
+                {{ error }}
+            </small>
+            {% endif %}
+
+            <input type="submit" value="register">
+
+        </form>
+
+    </div>
     <div class="btn_back_to_home_page">
         <a href="{% url 'accounts_homepage' %}"><button>back to home page</button></a>
     </div>
