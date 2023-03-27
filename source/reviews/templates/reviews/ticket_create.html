@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block ticket %}
+
+<h1>{{ title }}</h1> 
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button><a  href="{% url 'reviews-main' %}">Cancel</a></button>
+    <button  type="submit">Post</button>
+</form>
+
+{% endblock %}
