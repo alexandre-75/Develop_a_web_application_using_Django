@@ -8,6 +8,11 @@
 </head>
 <body>
     <div class="navigation_bar">
+
+        {% if user.is_authenticated %}
+        count of : {{user.username}}
+        {% endif %}
+
         <h1>Litreview</h1>
         <a href="{% url 'reviews-main' %}"><h1>Flux</h1></a>
         <a href="{% url 'reviews-posts' %}"><h1>Posts</h1></a>

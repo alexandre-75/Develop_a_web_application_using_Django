@@ -5,7 +5,7 @@
 <div class="content_welcome">
     <h1>register</h1>
     <div class="form_sign_up">
-        <form method="POST" action="">
+        <form method = "POST">
             {% csrf_token %}
 
             <label for="username">Username</label>
@@ -24,7 +24,6 @@
             {% endif %}
 
             <input type="submit" value="register">
-
         </form>
 
     </div>

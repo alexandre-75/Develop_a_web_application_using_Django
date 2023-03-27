@@ -4,10 +4,23 @@
 
 <div class="content_welcome">
     <div class="login">
+        <h1>login</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+
+            <label for="password1">Password</label>
+            <input type="password" name="password1" id="password1">
+
+            <input type="submit" value="login">
+        </form>
     </div>
+
     <div class="sing_up">
-        <p>Register now</p>
-        <a href="{% url 'accounts_sign_up' %}">Sign Up</a>
+        <h1>Register now</h1>
+        <button><a href="{% url 'accounts_sign_up' %}">Sign Up</a></button>
     </div>
 </div>
 

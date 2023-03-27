@@ -16,4 +16,4 @@ def product_detail(request, slug):
 
 def logout_user(request):
     logout(request)
-    return render(request, "reviews/logout.html")
+    return redirect("accounts_homepage")
