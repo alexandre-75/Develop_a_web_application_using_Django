@@ -19,7 +19,8 @@
         <a href="{% url 'reviews-subscriptions' %}"><h1>Subscriptions</h1></a>
         <a href="{% url 'reviews-logout' %}"><h1>Logout</h1></a>
     </div>
-{% block content %}
-{% endblock %}
+{% block flux %}{% endblock %}
+{% block posts %}{% endblock %}
+{% block subscriptions %}{% endblock %}
 </body>
 </html>
