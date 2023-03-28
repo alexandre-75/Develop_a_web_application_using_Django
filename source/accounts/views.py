@@ -3,7 +3,6 @@ from accounts.models import CustomUser
 # from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 
-
 def homepage_welcome(request):
     if request.method == "POST":
         username = request.POST.get("username")

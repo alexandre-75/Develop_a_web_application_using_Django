@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block flux %}
+{% block content %}
 
 <div class="principal_btn_flux">
     <button><a href="{% url 'reviews-new_ticket' %}">Create Ticket</a></button>
-    <button><a href="#">Write Review</a></button>
+    <button><a href="{% url 'reviews-new_review' %}">Write Review</a></button>
 </div>
 
 {% endblock %}
