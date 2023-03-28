@@ -47,3 +47,7 @@ class NewReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']
+    
+
+class SearchUserForm(forms.Form):
+    user_name = forms.CharField(label="Search User", max_length=100)

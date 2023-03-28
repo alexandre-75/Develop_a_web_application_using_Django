@@ -4,4 +4,25 @@
 
 <h1>subscriptions</h1>
 
+
+<h4>Follow other users</h4>
+<form>
+{{ form }}
+<input type="submit" value="Send" />
+</form>
+
+
+<h4>Following</h4>
+{% for relation in relations %}
+{{ relation.followed_user.username }}
+<input type="submit" value="Unfollow" />
+{% endfor %}
+
+
+<h4>Users</h4>
+{% for user in users %}
+{{ user.username }}
+{% endfor %}
+
+
 {% endblock %}

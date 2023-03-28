@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from .models import Ticket, Review
-from .forms import NewTicketForm, NewReviewForm 
+from .models import Ticket, Review, UserFollows
+from accounts.models import CustomUser
+from .forms import NewTicketForm, NewReviewForm, SearchUserForm
 
 def main(request):
     return render(request, "reviews/flux.html")
@@ -31,7 +32,6 @@ def ticket_new(request):
         form = NewTicketForm()
     return render(request, 'reviews/ticket_create.html', context = {'form': form})
 
-
 def review_new(request):
     if request.method == 'POST':
         t_form = NewTicketForm(request.POST)
@@ -57,3 +57,34 @@ def review_new(request):
         r_form = NewReviewForm()
 
     return render(request, 'reviews/review_create.html', context = {'t_form': t_form, 'r_form': r_form})
+ 
+def see_users(request):
+
+    users = CustomUser.objects.all().order_by("username")
+    users_names = [user.username for user in users]
+
+    relations = UserFollows.objects.filter(user=request.user)
+    relations_users = [relation.followed_user.username for relation in relations]
+    print(relations)
+    print(relations_users)
+
+    form = SearchUserForm()
+
+    # if request.method == "POST":
+
+    #     form = SearchUserForm(request.POST)
+    #     followed_name = request.POST["user_name"]
+    #     print("tata")
+
+    #     if form.is_valid():
+
+    #         print("ok")
+    #         new_relation = UserFollows()
+    #         new_relation.user = request.user
+    #         followed_user = CustomUser.objects.get(username=followed_name)
+    #         new_relation.followed_user = followed_user
+    #         new_relation.save()
+    #         return redirect("reviews-subscriptions")
+
+    context = {"users": users, "form": form, "relations": relations}
+    return render(request, "reviews/subscriptions.html", context)
