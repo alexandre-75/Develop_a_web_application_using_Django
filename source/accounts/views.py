@@ -1,18 +1,15 @@
 from django.shortcuts import render, redirect
 from accounts.models import CustomUser
-# from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 
 def homepage_welcome(request):
     if request.method == "POST":
         username = request.POST.get("username")
-        password = request.POST.get("password")
+        password = request.POST.get("password1")
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            print("hello")
             return redirect('reviews-main')
-    print("ss")
     return render(request, "accounts/homepage.html")
 
 def sign_up(request):

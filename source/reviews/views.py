@@ -70,21 +70,21 @@ def see_users(request):
 
     form = SearchUserForm()
 
-    # if request.method == "POST":
+    if request.method == "POST":
 
-    #     form = SearchUserForm(request.POST)
-    #     followed_name = request.POST["user_name"]
-    #     print("tata")
+        form = SearchUserForm(request.POST)
+        followed_name = request.POST["user_name"]
+        if followed_name == request.user.username:
+            context = {"users": users, "form": form, "relations": relations, "error": "id impossible"}
+            return render(request, "reviews/subscriptions.html", context)
 
-    #     if form.is_valid():
-
-    #         print("ok")
-    #         new_relation = UserFollows()
-    #         new_relation.user = request.user
-    #         followed_user = CustomUser.objects.get(username=followed_name)
-    #         new_relation.followed_user = followed_user
-    #         new_relation.save()
-    #         return redirect("reviews-subscriptions")
+        if form.is_valid():
+            new_relation = UserFollows()
+            new_relation.user = request.user
+            followed_user = CustomUser.objects.get(username=followed_name)
+            new_relation.followed_user = followed_user
+            new_relation.save()
+            return redirect("reviews-subscriptions")
 
     context = {"users": users, "form": form, "relations": relations}
     return render(request, "reviews/subscriptions.html", context)
