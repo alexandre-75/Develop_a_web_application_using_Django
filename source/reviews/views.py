@@ -65,6 +65,9 @@ def see_users(request):
     relations = UserFollows.objects.filter(user=request.user)
     relations_users = [relation.followed_user.username for relation in relations]
 
+    r = UserFollows.objects.filter(followed_user=request.user)
+    r_users = [relation.user.username for relation in r]
+
     form = SearchUserForm()
 
     if request.method == "POST":
@@ -72,7 +75,7 @@ def see_users(request):
         form = SearchUserForm(request.POST)
         followed_name = request.POST["user_name"]
         if followed_name == request.user.username:
-            context = {"users": users, "form": form, "relations": relations, "error": "id impossible"}
+            context = {"users": users, "form": form, "relations": relations, "error": "id impossible", "r_users": r,}
             return render(request, "reviews/subscriptions.html", context)
 
         if form.is_valid():
@@ -83,7 +86,7 @@ def see_users(request):
             new_relation.save()
             return redirect("reviews-subscriptions")
 
-    context = {"users": users, "form": form, "relations": relations}
+    context = {"users": users, "form": form, "relations": relations, "r_users": r,}
     return render(request, "reviews/subscriptions.html", context)
 
 def unfollow_user(request, id_user):
@@ -91,4 +94,3 @@ def unfollow_user(request, id_user):
     relation = UserFollows.objects.filter(user=request.user, followed_user=followed_user)
     relation.delete()
     return redirect("reviews-subscriptions")
- 
