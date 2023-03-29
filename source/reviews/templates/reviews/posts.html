@@ -15,7 +15,7 @@
         <div>"{{ post.ticket.description }}"</div>
 
         <button><a href="#" type="submit">Edit</a></button>
-        <button><a href="#" type="submit">Delete</a></button>
+        <button><a href="{% url 'review-delete' post.id %}" type="submit">Delete</a></button>
     </article>
     {% endfor %}
 {% endblock %}

@@ -95,3 +95,8 @@ def unfollow_user(request, id_user):
     relation = UserFollows.objects.filter(user=request.user, followed_user=followed_user)
     relation.delete()
     return redirect("reviews-subscriptions")
+
+def delete_review(request, id_review):
+    revw = Review.objects.filter(user=request.user, id = id_review)
+    revw.delete()
+    return redirect("reviews-posts")
