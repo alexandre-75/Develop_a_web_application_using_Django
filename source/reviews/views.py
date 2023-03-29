@@ -100,3 +100,21 @@ def delete_review(request, id_review):
     revw = Review.objects.filter(user=request.user, id = id_review)
     revw.delete()
     return redirect("reviews-posts")
+
+
+def edit_review(request, id_review):
+    
+    instance = get_object_or_404(Review, id=id_review)
+    review = Review.objects.filter(id=id_review)
+
+    if request.method == "POST":
+        form = NewReviewForm(request.POST, instance=instance)
+        if form.is_valid():
+            edited_review = form.save(commit=False)
+            edited_review.user = request.user
+            edited_review.save()
+            return redirect("reviews-posts")
+    else:
+        form = NewReviewForm(instance=instance)
+
+    return render(request, "reviews/edit_review.html", {"form": form, "review": review})
