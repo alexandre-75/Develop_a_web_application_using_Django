@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
-<h1>posts</h1>
+    <h1>posts</h1>
+    {% for post in review %}
+
+    <article>
+        <div>{{ post.time_created }}</div>
+        <div>{{ post.headline }}</div>
+        <div>({{ post.rating }}/5)</div>
+        <div>{{ post.body }}</div>
+        <div>{{ post.ticket.user }}</div>
+        <div>{{ post.ticket.time_created }}</div>
+        <div>{{ post.ticket.title }}</div>
+        <div>"{{ post.ticket.description }}"</div>
+
+        <button><a href="#" type="submit">Edit</a></button>
+        <button><a href="#" type="submit">Delete</a></button>
+    </article>
+    {% endfor %}
 {% endblock %}

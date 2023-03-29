@@ -9,7 +9,8 @@ def main(request):
     return render(request, "reviews/flux.html")
 
 def posts(request):
-    return render(request, "reviews/posts.html")
+    review = Review.objects.filter(user=request.user)
+    return render(request, "reviews/posts.html", context ={"review":review}) 
 
 def subscriptions(request):
     return render(request, "reviews/subscriptions.html")
