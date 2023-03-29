@@ -23,7 +23,7 @@
 <h4>Following</h4>
 {% for relation in relations %}
 {{ relation.followed_user.username }}
-<input type="submit" value="Unfollow" />
+<a  href="{% url 'unfollow_user' relation.followed_user.id %}" type="submit">Unfollow</a>
 {% endfor %}
 
 

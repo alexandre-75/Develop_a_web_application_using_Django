@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from .models import Ticket, Review, UserFollows
@@ -65,8 +64,6 @@ def see_users(request):
 
     relations = UserFollows.objects.filter(user=request.user)
     relations_users = [relation.followed_user.username for relation in relations]
-    print(relations)
-    print(relations_users)
 
     form = SearchUserForm()
 
@@ -88,3 +85,10 @@ def see_users(request):
 
     context = {"users": users, "form": form, "relations": relations}
     return render(request, "reviews/subscriptions.html", context)
+
+def unfollow_user(request, id_user):
+    followed_user = get_object_or_404(CustomUser, id=id_user)
+    relation = UserFollows.objects.filter(user=request.user, followed_user=followed_user)
+    relation.delete()
+    return redirect("reviews-subscriptions")
+ 
