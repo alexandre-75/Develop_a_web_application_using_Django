@@ -9,16 +9,17 @@
 
 {% for post in ss %}
 
-    {% if post in ff %}
+    {% if post in ff or rr %}
 
         <div> author ticket : {{ post.user.username }}</div>
         <div>date of creation : {{ post.time_created }}</div>
         <div>title : {{ post.title }}</div>
         <div>body : {{ post.description }}</div>
-        <button><a href="#">A</a></button>
-    <button><a href="#">B</a></button>
 
-    {% elif post in f %}
+        <button><a href="#">A</a></button>
+        <button><a href="#">B</a></button>
+
+    {% elif post in f or r %}
 
         <div> author review : {{ post.user.username }}</div>
         <div>date of creation : {{ post.time_created }}</div>
@@ -29,8 +30,9 @@
         <div>{{ post.ticket.time_created }}</div>
         <div>{{ post.ticket.title }}</div>
         <div>{{ post.ticket.description }}</div>
+        
         <button><a href="#">A</a></button>
-    <button><a href="#">B</a></button>
+        <button><a href="#">B</a></button>
 
     {% endif %}
 {%  endfor %}

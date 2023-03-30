@@ -6,17 +6,35 @@ from accounts.models import CustomUser
 from .forms import NewTicketForm, NewReviewForm, SearchUserForm
 
 def main(request):
-    list_id_followed_users = []
-    list_id_review_followed_user = []
-    review_final = []
 
-    list_id_ticket_followed_user = []
+    list_review_personal = []
+    ticket_no_comment = []
+    review_final = []
     ticket_final = []
 
+    list_review_ticket_id = []
+    list_id_followed_users = []
+    list_id_review_followed_user = []
+    list_id_ticket_followed_user = []
+    
     listfinal = []
 
-
     followed_user = UserFollows.objects.filter(user=request.user)
+    review = Review.objects.filter(user=request.user)
+    tickets = Ticket.objects.filter(user=request.user)
+
+    for i in review:
+        list_review_personal.append(i)
+        listfinal.append(i)
+
+    for i in range(len(review)):
+        a = review[i].ticket_id
+        list_review_ticket_id.append(a)
+
+    for tick in tickets:
+        if tick.id not in list_review_ticket_id:
+            ticket_no_comment.append(tick)
+            listfinal.append(tick)
     
     for i in followed_user:
         list_id_followed_users.append(i.followed_user_id)
@@ -42,10 +60,10 @@ def main(request):
         for z in tickets:
             ticket_final.append(z)
             listfinal.append(z)
-    
+
     sorted_listfinal = sorted(listfinal, key=lambda post: post.time_created, reverse=True)
 
-    context={"f": review_final, "ff": ticket_final, "ss": sorted_listfinal}
+    context={"f": review_final, "ff": ticket_final, "r":list_review_personal, "rr":ticket_no_comment,  "ss": sorted_listfinal}
     return render(request, "reviews/flux.html", context)
 
 def posts(request):
@@ -64,8 +82,7 @@ def posts(request):
     for tick in tickets:
         if tick.id not in list_review_ticket_id:
             ticket_no_comment.append(tick)
-    
-    print(review)
+
 
     return render(request, "reviews/posts.html", context ={"review":review, "ticket":ticket_no_comment}) 
 
