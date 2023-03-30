@@ -28,7 +28,7 @@
         <div>{{ post.time_created }}</div>
         <div>{{ post.title }}</div>
         <div>{{ post.description }}</div>
-        <button><a href="#" type="submit">Edit</a></button>
+        <button><a href="{% url 'ticket-edit' post.id %}" type="submit">Edit</a></button>
         <button><a href="{% url 'ticket-delete' post.id %}" type="submit">Delete</a></button>
 
     </article>

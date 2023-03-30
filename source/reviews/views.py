@@ -137,3 +137,18 @@ def delete_ticket(request, id_ticket):
     tikt = Ticket.objects.filter(user=request.user, id = id_ticket)
     tikt.delete()
     return redirect("reviews-posts")
+
+def edit_ticket(request, id_ticket):
+
+    instance = get_object_or_404(Ticket, id=id_ticket)
+
+    if request.method == "POST":
+        form = NewTicketForm(request.POST, instance=instance)
+        if form.is_valid():
+            edited_ticket = form.save(commit=False)
+            edited_ticket.user = request.user
+            edited_ticket.save()
+            return redirect("reviews-posts")
+    else:
+        form = NewTicketForm(instance=instance)
+    return render(request, "reviews/edit_ticket.html", {"form": form})
