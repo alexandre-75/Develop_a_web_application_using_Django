@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import main, posts, subscriptions, logout_user, ticket_new, review_new, see_users, unfollow_user, delete_review, edit_review
+from .views import main, posts, subscriptions, logout_user, ticket_new, review_new, see_users, unfollow_user, delete_review, edit_review, delete_ticket
 
 
 urlpatterns = [
@@ -9,6 +9,7 @@ urlpatterns = [
 
     path("posts", posts, name="reviews-posts"),
     path("delete_review/<int:id_review>/", delete_review, name="review-delete"),
+    path("delete_ticket/<int:id_ticket>/", delete_ticket, name="ticket-delete"),
     path("edit_review/<int:id_review>/", edit_review, name="review-edit"),
 
     path("subscriptions", see_users, name="reviews-subscriptions"),

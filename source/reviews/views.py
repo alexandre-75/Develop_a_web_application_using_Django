@@ -116,7 +116,6 @@ def delete_review(request, id_review):
     revw.delete()
     return redirect("reviews-posts")
 
-
 def edit_review(request, id_review):
 
     instance = get_object_or_404(Review, id=id_review)
@@ -133,3 +132,8 @@ def edit_review(request, id_review):
         form = NewReviewForm(instance=instance)
 
     return render(request, "reviews/edit_review.html", {"form": form, "review": review})
+
+def delete_ticket(request, id_ticket):
+    tikt = Ticket.objects.filter(user=request.user, id = id_ticket)
+    tikt.delete()
+    return redirect("reviews-posts")
