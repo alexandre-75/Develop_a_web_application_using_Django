@@ -14,7 +14,7 @@
         <div>{{ post.ticket.user }}</div>
         <div>{{ post.ticket.time_created }}</div>
         <div>{{ post.ticket.title }}</div>
-        <div>"{{ post.ticket.description }}"</div>
+        <div>{{ post.ticket.description }}</div>
 
         <button><a href="{% url 'review-edit' post.id %}" type="submit">Edit</a></button>
         <button><a href="{% url 'review-delete' post.id %}" type="submit">Delete</a></button>

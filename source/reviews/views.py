@@ -6,7 +6,47 @@ from accounts.models import CustomUser
 from .forms import NewTicketForm, NewReviewForm, SearchUserForm
 
 def main(request):
-    return render(request, "reviews/flux.html")
+    list_id_followed_users = []
+    list_id_review_followed_user = []
+    review_final = []
+
+    list_id_ticket_followed_user = []
+    ticket_final = []
+
+    listfinal = []
+
+
+    followed_user = UserFollows.objects.filter(user=request.user)
+    
+    for i in followed_user:
+        list_id_followed_users.append(i.followed_user_id)
+
+    review_all_user = Review.objects.all()
+    for i in review_all_user:
+        if i.user_id in list_id_followed_users:
+            list_id_review_followed_user.append(i.id)
+    
+    for i in list_id_review_followed_user:
+        reviews = Review.objects.filter(id__in=[i])
+        for z in reviews:
+            review_final.append(z)
+            listfinal.append(z)
+
+    ticket_all_user = Ticket.objects.all()
+    for i in ticket_all_user:
+        if i.user_id in list_id_followed_users:
+            list_id_ticket_followed_user.append(i.id)
+        
+    for i in list_id_ticket_followed_user:
+        tickets = Ticket.objects.filter(id__in=[i])
+        for z in tickets:
+            ticket_final.append(z)
+            listfinal.append(z)
+    
+    sorted_listfinal = sorted(listfinal, key=lambda post: post.time_created, reverse=True)
+
+    context={"f": review_final, "ff": ticket_final, "ss": sorted_listfinal}
+    return render(request, "reviews/flux.html", context)
 
 def posts(request):
 
@@ -24,6 +64,8 @@ def posts(request):
     for tick in tickets:
         if tick.id not in list_review_ticket_id:
             ticket_no_comment.append(tick)
+    
+    print(review)
 
     return render(request, "reviews/posts.html", context ={"review":review, "ticket":ticket_no_comment}) 
 
