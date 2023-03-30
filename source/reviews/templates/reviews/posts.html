@@ -2,6 +2,8 @@
 
 {% block content %}
     <h1>posts</h1>
+
+    <h2>review</h2>
     {% for post in review %}
 
     <article>
@@ -16,6 +18,19 @@
 
         <button><a href="{% url 'review-edit' post.id %}" type="submit">Edit</a></button>
         <button><a href="{% url 'review-delete' post.id %}" type="submit">Delete</a></button>
+    </article>
+    {% endfor %}
+
+    <h2>ticket</h2>
+    {% for post in ticket %}
+
+    <article>
+        <div>{{ post.time_created }}</div>
+        <div>{{ post.title }}</div>
+        <div>{{ post.description }}</div>
+        <button><a href="#" type="submit">Edit</a></button>
+        <button><a href="#" type="submit">Delete</a></button>
+
     </article>
     {% endfor %}
 {% endblock %}

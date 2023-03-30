@@ -9,8 +9,23 @@ def main(request):
     return render(request, "reviews/flux.html")
 
 def posts(request):
+
+    list_review_ticket_id =[]
+    ticket_no_comment = []
+
     review = Review.objects.filter(user=request.user)
-    return render(request, "reviews/posts.html", context ={"review":review}) 
+
+    for i in range(len(review)):
+        a = review[i].ticket_id
+        list_review_ticket_id.append(a)
+
+    tickets = Ticket.objects.filter(user=request.user)
+
+    for tick in tickets:
+        if tick.id not in list_review_ticket_id:
+            ticket_no_comment.append(tick)
+
+    return render(request, "reviews/posts.html", context ={"review":review, "ticket":ticket_no_comment}) 
 
 def subscriptions(request):
     return render(request, "reviews/subscriptions.html")
@@ -103,7 +118,7 @@ def delete_review(request, id_review):
 
 
 def edit_review(request, id_review):
-    
+
     instance = get_object_or_404(Review, id=id_review)
     review = Review.objects.filter(id=id_review)
 
