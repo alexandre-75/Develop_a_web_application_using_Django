@@ -1,19 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>New Review</h1>
+<div class="content_create_review">
+    <h1 class="title_new_review">New Review</h1>
 
-<form method="POST">
-    {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-    <h1>article/book</h1>
-    {{ t_form.as_p }}
+        <div class="b">
+            <h1 class="center">article/book</h1>
+            {{ t_form.as_p }}
+        </div>
 
-    <h1>critique</h1>
-    {{ r_form.as_p }}
-    
-    <button><a  href="{% url 'reviews-main' %}">Cancel</a></button>
-    <button  type="submit">Post</button>
-</form>
+        <div class="a">
+            <h1 class="center">critique</h1>
+            {{ r_form.as_p }}
+            
+            <div class="c">
+                <button  class="btn_create_review" type="submit">Post</button>
+                <button class="btn_create_review"><a  href="{% url 'reviews-main' %}">Cancel</a></button>
 
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock content %}

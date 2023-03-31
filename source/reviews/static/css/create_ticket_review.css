@@ -2,7 +2,7 @@
     background-color: blanchedalmond;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 50px;
     height: 500px;
 
 }
@@ -21,4 +21,37 @@
 }
 .my-input-class {
     margin-left: 50px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+.content_create_review {
+    background-color: blanchedalmond;
+    margin-top: 50px;
+}
+.title_new_review{
+    display: flex;
+    justify-content: center;
+}
+.center{
+    padding-left: 100px;
+}
+.b {
+    border: solid black;
+    border-bottom: dashed ;
+}
+.a {
+    border: ridge black;
+    border-top: dashed;
+}
+
+.c{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.btn_create_review {
+    width: 200px;
+    height: 50px;
 }
