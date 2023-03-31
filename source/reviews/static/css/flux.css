@@ -1,0 +1,38 @@
+.principal_btn_flux {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    
+ }
+ .btn_create_ticket {
+    width: 450px;
+    height: 50px;
+ }
+ .btn_write_review {
+    width: 450px;
+    height: 50px;
+ }
+ 
+ .ticket {
+    margin-top: 10px;
+    border: solid black;
+    height: 200px
+ }
+ .review {
+   margin-top: 10px;
+   border: solid black;
+   height: 200px
+ }
+ .review_followed_user {
+   background-color: salmon;
+ }
+ .review_user {
+   background-color: rgb(122, 144, 79);
+ }
+ .ticket_followed_user{
+   background-color: rgb(243, 163, 72)
+ }
+ .ticket_user{
+   background-color: cadetblue;
+ }
+ 

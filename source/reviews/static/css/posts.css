@@ -1,0 +1,25 @@
+.review_posts {
+    border: solid black;
+    background-color: rgb(122, 144, 79);
+    margin-top: 10px;
+}
+.ticket_posts {
+    border: solid black;
+    background-color: cadetblue;
+    margin-top: 10px;
+    height: 100px;
+}
+.titles-posts {
+    display: flex;
+    justify-content: center;  
+}
+.center_btn {
+    display: flex;
+    justify-content: center;
+}
+.btn_posts {
+    height: 30px;
+    width: 200px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
