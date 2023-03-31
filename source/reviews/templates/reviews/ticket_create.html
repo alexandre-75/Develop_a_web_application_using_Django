@@ -2,13 +2,16 @@
 
 
 {% block content %}
+<div class="content_ticket">
+    <h1 class="title_new_ticket">New Ticket</h1> 
+    <form  class="form_new_ticket" method="POST">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
 
-<h1>New Ticket</h1> 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button><a  href="{% url 'reviews-main' %}">Cancel</a></button>
-    <button  type="submit">Post</button>
-</form>
-
+        <button class="size_btn top " type="submit">Post</button>
+        <button class="size_btn top"><a  href="{% url 'reviews-main' %}">Cancel</a></button>
+        
+    </form>
+</div>
 {% endblock %}

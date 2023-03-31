@@ -5,7 +5,7 @@ class NewTicketForm(forms.ModelForm):
     title = forms.CharField(
         label="Title",
         max_length=200,
-        widget=forms.TextInput()
+        widget=forms.TextInput(attrs={'class': 'my-input-class',})
     )
     description = forms.CharField(
         label="Description",
