@@ -18,7 +18,7 @@ def sign_up(request):
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
         if password1 != password2:
-            return render(request, "accounts/sign_up.html", {"error": "mdp no correct"})
+            return render(request, "accounts/sign_up.html", {"error": "Password no correct"})
         user = CustomUser.objects.create_user(username=username, password=password1)
         login(request, user)
         return redirect("reviews-main")

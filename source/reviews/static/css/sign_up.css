@@ -1,0 +1,23 @@
+
+.content_sign_up {
+    background-color: blanchedalmond;
+    height: 400px;
+}
+
+.form-sign_up {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.space_top {
+    margin-top: 20px;
+}
+.width_btn {
+    width: 20%;
+}
+
+small{
+    color: red;
+    font-size: xx-large;
+}

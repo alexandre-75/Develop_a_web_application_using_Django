@@ -2,32 +2,33 @@
 
 {% block welcome %}
 
-<div class="content_welcome">
-    <h1>register</h1>
+<div class="content_sign_up">
+    <!-- <h1>register</h1> -->
     <div class="form_sign_up">
-        <form method = "POST">
+        <h1>register</h1>
+        <form class="form-sign_up" method = "POST">
             {% csrf_token %}
 
-            <label for="username">Username</label>
+            <label class="space_top" for="username">Username</label>
             <input type="text" name="username" id="username">
 
-            <label for="password1">Password</label>
+            <label class="space_top" for="password1">Password</label>
             <input type="password" name="password1" id="password1">
 
-            <label for="password2">Confirm Password</label>
+            <label class="space_top" for="password2">Confirm Password</label>
             <input type="password" name="password2" id="password2">
 
             {% if error %}
-            <small style="color: brown;">
+            <small>
                 {{ error }}
             </small>
             {% endif %}
 
-            <input type="submit" value="register">
+            <input class="space_top width_btn" type="submit" value="register">
         </form>
 
     </div>
-    <div class="btn_back_to_home_page">
+    <div class="space_top">
         <a href="{% url 'accounts_homepage' %}"><button>back to home page</button></a>
     </div>
 </div>
