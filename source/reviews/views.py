@@ -211,3 +211,37 @@ def edit_ticket(request, id_ticket):
     else:
         form = NewTicketForm(instance=instance)
     return render(request, "reviews/edit_ticket.html", {"form": form})
+
+def respond_to_a_ticket(request, id_ticket):
+
+    list_id = []
+    all_review = Review.objects.all()
+    for i in all_review:
+        list_id.append(i.ticket_id)
+
+    instance = get_object_or_404(Ticket, id=id_ticket)
+
+    for i in list_id:
+        if instance.id == i:
+            return redirect('reviews-error')
+        else:
+            pass
+
+    if request.method == "POST":
+        r_form = NewReviewForm(request.POST)
+        if r_form.is_valid():
+            Review.objects.create(
+                ticket=instance,
+                user=request.user,
+                headline=request.POST['headline'],
+                rating=request.POST['rating'],
+                body=request.POST['body']
+            )
+            return redirect('reviews-main')
+    else:
+        r_form = NewReviewForm()
+    
+    return render(request, "reviews/respond_ticket.html", context={"r_form": r_form, "ticket": instance})
+
+def error(request):
+    return render(request, "reviews/error.html")

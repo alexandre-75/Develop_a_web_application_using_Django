@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<article>
+    <div>{{ ticket.time_created }}</div>
+    <div>{{ ticket.user.username }}</div>
+    <div>{{ ticket.title }}</div>
+    <div>{{ ticket.description }}</div>
+</article>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <h4>critique : </h4>
+    {{ r_form.as_p }}
+    
+    <button><a href="#">Cancel</a></button>
+    <button  type="submit">Post</button>
+
+</form>
+
+{% endblock %}
