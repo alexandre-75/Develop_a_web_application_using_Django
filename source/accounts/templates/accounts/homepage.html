@@ -3,25 +3,26 @@
 {% block welcome %}
 
 <div class="content_welcome">
-    <div class="login">
-        <h1>login</h1>
-        <form method = "POST">
-            {% csrf_token %}
-
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
-
-            <label for="password1">Password</label>
-            <input type="password" name="password1" id="password1">
-
-            <input type="submit" value="login">
-        </form>
-    </div>
-
+    
     <div class="sing_up">
         <h1>Register now</h1>
         <button><a href="{% url 'accounts_sign_up' %}">Sign Up</a></button>
     </div>
+
+    <div class="login">
+        <h1>login</h1>
+        <form class="form" method = "POST">
+            {% csrf_token %}
+
+            <label class="space-between" for="username">Username</label>
+            <input type="text" name="username" id="username">
+
+            <label class="space-between" for="password1">Password</label>
+            <input type="password" name="password1" id="password1">
+
+            <input class="space-between" type="submit" value="login">
+        </form>
+    </div> 
 </div>
 
 {% endblock %}

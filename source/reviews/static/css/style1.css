@@ -1,0 +1,8 @@
+.navigation_bar {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-around;
+ }
+ .test {
+    color: blueviolet;
+ }

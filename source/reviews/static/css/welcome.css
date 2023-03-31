@@ -1,0 +1,24 @@
+.titre {
+    color:black;
+    border: 2px solid black;
+    text-align: center;
+}
+.content_welcome {
+    background-color: blanchedalmond;
+    display: flex;
+    justify-content: space-around;
+    height: 300px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.space-between {
+    margin-top: 10px;
+}
+a:link {
+    text-decoration: none;
+  } 
+a:visited {
+    color: black;
+  }
