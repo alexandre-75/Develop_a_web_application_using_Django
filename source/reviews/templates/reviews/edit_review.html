@@ -2,18 +2,22 @@
 
 {% block content %}
 
-{% for i in review %}
-    {{ i.ticket.time_created }}
-    {{ i.ticket.title }}
-    {{ i.ticket.description }}      
-{% endfor %}
+<div class="content_edit_review">
+    <div class="ticket_edit_review">
+        {% for i in review %}
+            <p>You posted a review, date of creation : {{ i.ticket.time_created }}</p>
+            <p>title of the book/article I am reviewing : {{ i.ticket.title }}</p>
+            <p>Description : {{ i.ticket.description }} </p>   
+        {% endfor %}
+    </div>
 
-<form method="POST">
-    {% csrf_token %}
-    {% for i in form %}
-        {{ i }}
-        
-    {% endfor %}
-    <input  type="submit" value="Send" />
-</form>
+    <form method="POST">
+        {% csrf_token %}
+        {% for i in form %}
+            <p>{{ i }}</p>
+            
+        {% endfor %}
+        <input  type="submit" value="Send" />
+    </form>
+</div>
 {% endblock %}

@@ -1,0 +1,22 @@
+.content_edit_review {
+    background-color: blanchedalmond;
+    margin-top: 20px;
+}
+.ticket_edit_review {
+    background-color: yellowgreen;
+    display: flex;
+    flex-direction: column;
+    padding-left: 400px;
+    border: solid black;
+    margin: 10px 10px 10px 10px;
+    font-weight: bold;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.content_edit_ticket {
+    background-color: blanchedalmond;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-left: 400px;
+}

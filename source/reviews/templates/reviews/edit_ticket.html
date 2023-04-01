@@ -2,13 +2,16 @@
 
 {% block content %}
 
-<form method="POST">
-    {% csrf_token %}
+<div class="content_edit_ticket">
+    <h2>Edit a Ticket</h2>
+    <form method="POST">
+        {% csrf_token %}
 
-    {% for i in form %}
-        {{ i }}   
-    {% endfor %}
-    <input  type="submit" value="Send" />
-    
-</form>
+        {% for i in form %}
+            <p>{{ i }}</p>  
+        {% endfor %}
+        <input  type="submit" value="Send" />
+        
+    </form>
+</div>
 {% endblock %}

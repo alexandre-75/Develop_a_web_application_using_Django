@@ -7,14 +7,15 @@
     {% for post in review %}
 
     <article class="review_posts">
-        <div>{{ post.time_created }}</div>
-        <div>{{ post.headline }}</div>
-        <div>({{ post.rating }}/5)</div>
-        <div>{{ post.body }}</div>
-        <div>{{ post.ticket.user }}</div>
-        <div>{{ post.ticket.time_created }}</div>
-        <div>{{ post.ticket.title }}</div>
-        <div>{{ post.ticket.description }}</div>
+        <h3>You posted a review, date of creation : {{ post.time_created }}</h3>
+        <div class="x">review headline : {{ post.headline }}</div>
+        <div class="x">rating : ({{ post.rating }}/5)</div>
+        <div class="x">general comment : {{ post.body }}</div>
+        
+        <div class="content_review_comment">
+            <div class="title_post_ticket_title">title of the book/article I am reviewing : {{ post.ticket.title }}</div>
+            <div>Description : {{ post.ticket.description }}</div>
+        </div>
 
         <div class="center_btn">
             <button class="btn_posts"><a href="{% url 'review-edit' post.id %}" type="submit">Edit</a></button>
@@ -27,9 +28,9 @@
     {% for post in ticket %}
 
     <article class="ticket_posts">
-        <div>{{ post.time_created }}</div>
-        <div>{{ post.title }}</div>
-        <div>{{ post.description }}</div>
+        <div class="x">You posted a ticket, date of creation : {{ post.time_created }}</div>
+        <div class="x">Title : {{ post.title }}</div>
+        <div class="x">Description : {{ post.description }}</div>
 
         <div class="center_btn">
             <button class="btn_posts"><a href="{% url 'ticket-edit' post.id %}" type="submit">Edit</a></button>
