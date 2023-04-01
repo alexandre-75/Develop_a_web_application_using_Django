@@ -1,0 +1,17 @@
+.content_repond_ticket {
+    background-color: blanchedalmond;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.article_ticket {
+    border: solid black;
+    padding : 10px 10px 10px 10px;
+    background-color: chocolate;
+    font-weight: bold;
+}
+.v {
+    margin-top: 5px;
+}

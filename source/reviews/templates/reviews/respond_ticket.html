@@ -2,22 +2,23 @@
 
 {% block content %}
 
-<article>
-    <div>{{ ticket.time_created }}</div>
-    <div>{{ ticket.user.username }}</div>
-    <div>{{ ticket.title }}</div>
-    <div>{{ ticket.description }}</div>
-</article>
+<div class="content_repond_ticket">
+    <article class="article_ticket">
+        <p>Resume Ticket : </p>
+        <div class="v">Date of creation : {{ ticket.time_created }}</div>
+        <div class="v">Username : {{ ticket.user.username }}</div>
+        <div class="v"> Title : {{ ticket.title }}</div>
+        <div class="v">Description : {{ ticket.description }}</div>
+    </article>
 
-<form method="POST">
-    {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-    <h4>critique : </h4>
-    {{ r_form.as_p }}
-    
-    <button><a href="#">Cancel</a></button>
-    <button  type="submit">Post</button>
+        <h4>critique : </h4>
+        {{ r_form.as_p }}
+        
+        <button  type="submit">Post</button>
 
-</form>
-
+    </form>
+</div>
 {% endblock %}
