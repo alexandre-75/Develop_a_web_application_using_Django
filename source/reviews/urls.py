@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import main, posts, subscriptions, logout_user, ticket_new, review_new, see_users, unfollow_user, delete_review, edit_review, delete_ticket, edit_ticket, respond_to_a_ticket, error
+from .views import main, posts, logout_user, ticket_new, review_new, see_users, unfollow_user, delete_review, edit_review, delete_ticket, edit_ticket, respond_to_a_ticket, error
 
 
 urlpatterns = [
@@ -20,6 +20,4 @@ urlpatterns = [
 
     path("logout", logout_user, name="reviews-logout"),
     path("error", error, name="reviews-error"),
-    
-] 
-
+]

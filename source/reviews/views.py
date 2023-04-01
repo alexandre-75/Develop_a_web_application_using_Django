@@ -1,10 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from .models import Ticket, Review, UserFollows
 from accounts.models import CustomUser
 from .forms import NewTicketForm, NewReviewForm, SearchUserForm
 
+
+@login_required
 def main(request):
 
     list_review_personal = []
@@ -16,7 +18,7 @@ def main(request):
     list_id_followed_users = []
     list_id_review_followed_user = []
     list_id_ticket_followed_user = []
-    
+
     listfinal = []
 
     followed_user = UserFollows.objects.filter(user=request.user)
@@ -35,7 +37,7 @@ def main(request):
         if tick.id not in list_review_ticket_id:
             ticket_no_comment.append(tick)
             listfinal.append(tick)
-    
+
     for i in followed_user:
         list_id_followed_users.append(i.followed_user_id)
 
@@ -43,7 +45,7 @@ def main(request):
     for i in review_all_user:
         if i.user_id in list_id_followed_users:
             list_id_review_followed_user.append(i.id)
-    
+
     for i in list_id_review_followed_user:
         reviews = Review.objects.filter(id__in=[i])
         for z in reviews:
@@ -54,7 +56,7 @@ def main(request):
     for i in ticket_all_user:
         if i.user_id in list_id_followed_users:
             list_id_ticket_followed_user.append(i.id)
-        
+
     for i in list_id_ticket_followed_user:
         tickets = Ticket.objects.filter(id__in=[i])
         for z in tickets:
@@ -63,12 +65,14 @@ def main(request):
 
     sorted_listfinal = sorted(listfinal, key=lambda post: post.time_created, reverse=True)
 
-    context={"f": review_final, "ff": ticket_final, "r":list_review_personal, "rr":ticket_no_comment,  "ss": sorted_listfinal}
+    context = {"f": review_final, "ff": ticket_final, "r": list_review_personal, "rr": ticket_no_comment, "ss": sorted_listfinal}
     return render(request, "reviews/flux.html", context)
 
+
+@login_required
 def posts(request):
 
-    list_review_ticket_id =[]
+    list_review_ticket_id = []
     ticket_no_comment = []
 
     review = Review.objects.filter(user=request.user)
@@ -83,16 +87,21 @@ def posts(request):
         if tick.id not in list_review_ticket_id:
             ticket_no_comment.append(tick)
 
+    return render(request, "reviews/posts.html", context={"review": review, "ticket": ticket_no_comment})
 
-    return render(request, "reviews/posts.html", context ={"review":review, "ticket":ticket_no_comment}) 
 
+@login_required
 def subscriptions(request):
     return render(request, "reviews/subscriptions.html")
 
+
+@login_required
 def logout_user(request):
     logout(request)
     return redirect("accounts_homepage")
 
+
+@login_required
 def ticket_new(request):
     if request.method == 'POST':
         form = NewTicketForm(request.POST)
@@ -104,14 +113,16 @@ def ticket_new(request):
             return redirect('reviews-main')
     else:
         form = NewTicketForm()
-    return render(request, 'reviews/ticket_create.html', context = {'form': form})
+    return render(request, 'reviews/ticket_create.html', context={'form': form})
 
+
+@login_required
 def review_new(request):
     if request.method == 'POST':
         t_form = NewTicketForm(request.POST)
         r_form = NewReviewForm(request.POST)
 
-        if  r_form.is_valid():
+        if r_form.is_valid():
             t = Ticket.objects.create(
                 user=request.user,
                 title=request.POST['title'],
@@ -130,18 +141,15 @@ def review_new(request):
         t_form = NewTicketForm()
         r_form = NewReviewForm()
 
-    return render(request, 'reviews/review_create.html', context = {'t_form': t_form, 'r_form': r_form})
- 
+    return render(request, 'reviews/review_create.html', context={'t_form': t_form, 'r_form': r_form})
+
+
+@login_required
 def see_users(request):
 
     users = CustomUser.objects.all().order_by("username")
-    users_names = [user.username for user in users]
-
     relations = UserFollows.objects.filter(user=request.user)
-    relations_users = [relation.followed_user.username for relation in relations]
-
     r = UserFollows.objects.filter(followed_user=request.user)
-    r_users = [relation.user.username for relation in r]
 
     form = SearchUserForm()
 
@@ -150,7 +158,7 @@ def see_users(request):
         form = SearchUserForm(request.POST)
         followed_name = request.POST["user_name"]
         if followed_name == request.user.username:
-            context = {"users": users, "form": form, "relations": relations, "error": "id impossible", "r_users": r,}
+            context = {"users": users, "form": form, "relations": relations, "error": "id impossible", "r_users": r, }
             return render(request, "reviews/subscriptions.html", context)
 
         if form.is_valid():
@@ -161,20 +169,26 @@ def see_users(request):
             new_relation.save()
             return redirect("reviews-subscriptions")
 
-    context = {"users": users, "form": form, "relations": relations, "r_users": r,}
+    context = {"users": users, "form": form, "relations": relations, "r_users": r, }
     return render(request, "reviews/subscriptions.html", context)
 
+
+@login_required
 def unfollow_user(request, id_user):
     followed_user = get_object_or_404(CustomUser, id=id_user)
     relation = UserFollows.objects.filter(user=request.user, followed_user=followed_user)
     relation.delete()
     return redirect("reviews-subscriptions")
 
+
+@login_required
 def delete_review(request, id_review):
-    revw = Review.objects.filter(user=request.user, id = id_review)
+    revw = Review.objects.filter(user=request.user, id=id_review)
     revw.delete()
     return redirect("reviews-posts")
 
+
+@login_required
 def edit_review(request, id_review):
 
     instance = get_object_or_404(Review, id=id_review)
@@ -192,11 +206,15 @@ def edit_review(request, id_review):
 
     return render(request, "reviews/edit_review.html", {"form": form, "review": review})
 
+
+@login_required
 def delete_ticket(request, id_ticket):
-    tikt = Ticket.objects.filter(user=request.user, id = id_ticket)
+    tikt = Ticket.objects.filter(user=request.user, id=id_ticket)
     tikt.delete()
     return redirect("reviews-posts")
 
+
+@login_required
 def edit_ticket(request, id_ticket):
 
     instance = get_object_or_404(Ticket, id=id_ticket)
@@ -212,6 +230,8 @@ def edit_ticket(request, id_ticket):
         form = NewTicketForm(instance=instance)
     return render(request, "reviews/edit_ticket.html", {"form": form})
 
+
+@login_required
 def respond_to_a_ticket(request, id_ticket):
 
     list_id = []
@@ -240,8 +260,10 @@ def respond_to_a_ticket(request, id_ticket):
             return redirect('reviews-main')
     else:
         r_form = NewReviewForm()
-    
+
     return render(request, "reviews/respond_ticket.html", context={"r_form": r_form, "ticket": instance})
 
+
+@login_required
 def error(request):
     return render(request, "reviews/error.html")

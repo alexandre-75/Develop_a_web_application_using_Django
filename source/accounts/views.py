@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from accounts.models import CustomUser
 from django.contrib.auth import login, authenticate
 
+
 def homepage_welcome(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -11,6 +12,7 @@ def homepage_welcome(request):
             login(request, user)
             return redirect('reviews-main')
     return render(request, "accounts/homepage.html")
+
 
 def sign_up(request):
     if request.method == "POST":

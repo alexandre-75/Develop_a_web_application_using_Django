@@ -1,11 +1,12 @@
 from django import forms
 from .models import Ticket, Review
 
+
 class NewTicketForm(forms.ModelForm):
     title = forms.CharField(
         label="Title",
         max_length=200,
-        widget=forms.TextInput(attrs={'class': 'my-input-class',})
+        widget=forms.TextInput(attrs={'class': 'my-input-class', })
     )
     description = forms.CharField(
         label="Description",
@@ -13,18 +14,21 @@ class NewTicketForm(forms.ModelForm):
         widget=forms.Textarea(),
         required=False
     )
+
     class Meta:
         model = Ticket
         fields = ['title', 'description']
 
+
 STARS = (
-    (0, "- 0"), 
-    (1, "- 1"), 
-    (2, "- 2"), 
-    (3, "- 3"), 
-    (4, "- 4"), 
+    (0, "- 0"),
+    (1, "- 1"),
+    (2, "- 2"),
+    (3, "- 3"),
+    (4, "- 4"),
     (5, '- 5'),
 )
+
 
 class NewReviewForm(forms.ModelForm):
     headline = forms.CharField(
@@ -36,7 +40,7 @@ class NewReviewForm(forms.ModelForm):
         initial=0,
         label="Rating",
         widget=forms.RadioSelect(),
-        choices = STARS
+        choices=STARS
     )
     body = forms.CharField(
         label="Review",
@@ -44,10 +48,11 @@ class NewReviewForm(forms.ModelForm):
         widget=forms.Textarea(),
         required=False
     )
+
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']
-    
+
 
 class SearchUserForm(forms.Form):
     user_name = forms.CharField(label="Search User", max_length=100)

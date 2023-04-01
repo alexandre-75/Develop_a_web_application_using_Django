@@ -14,6 +14,7 @@ class Ticket(models.Model):
     def __str__(self):
         return self.title
 
+
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
@@ -24,6 +25,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.headline
+
 
 class UserFollows(models.Model):
 
