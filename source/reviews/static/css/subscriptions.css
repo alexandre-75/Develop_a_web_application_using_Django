@@ -1,0 +1,38 @@
+.content_subscriptions {
+    background-color: blanchedalmond;
+    margin-bottom: 0px;
+}
+.title_subscriptions {
+    display: flex;
+    justify-content: center;
+}
+.title_s {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    font-size: x-large;
+}
+.user_username {
+    margin-left: 40px;
+}
+small{
+    color: red;
+    font-size: x-large;
+}
+.followed_username{
+    margin-left: 30px;
+    font-size: large;
+}
+.btn_unfolow {
+    width: 200px;
+    height: 30px;
+    margin-left: 20px;
+}
+.form_a {
+    margin-left: 30px;
+}
+.subscriber_username {
+    margin-left: 30px;
+    margin-bottom: 50px;
+}

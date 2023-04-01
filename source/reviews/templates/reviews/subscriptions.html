@@ -1,42 +1,55 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="content_subscriptions">
 
-<h1>subscriptions</h1>
+    <h1 class="title_subscriptions">Subscriptions</h1>
 
-<h4>Follow other users</h4>
-<form method="POST">
-{% csrf_token %}
+    <div class="content_all_users">
 
-{{ form.as_p }}
+        <h4 class="title_s"> All Users in DB</h4>
 
-{% if error %}
-<small style="color: brown;">
-    {{ error }}
-</small>
-{% endif %}
+        <div class="forms_all_users">
+            {% for user in users %}
+            <p class="user_username"> user : {{ user.username }}</p>
+            {% endfor %}
+        </div>
+    </div>
 
-<input type="submit" value="Send" />
-</form>
+    <div class="content_follow_users">
 
+        <h4 class="title_s">Follow other users</h4>
 
-<h4>Following</h4>
-{% for relation in relations %}
-{{ relation.followed_user.username }}
-<a  href="{% url 'unfollow_user' relation.followed_user.id %}" type="submit">Unfollow</a>
-{% endfor %}
+        <form class="form_a" method="POST">
+        {% csrf_token %}
+            {{ form }}
 
+                {% if error %}
+                <small>{{ error }}</small>
+                {% endif %}
 
-<h4>Users</h4>
-{% for user in users %}
-{{ user.username }}
-{% endfor %}
+            <input type="submit" value="Send" />
+        </form>
+    </div>
 
+    <div class="content_following">
 
-<h4>subscriber</h4>
+        <h4 class="title_s">Following</h4>
 
-{% for u in r_users %}
-{{ u.user.username }}
-{% endfor %}
+        {% for relation in relations %}
+        <p class="followed_username">{{ relation.followed_user.username }}</p>
+        <button class="btn_unfolow"><a  href="{% url 'unfollow_user' relation.followed_user.id %}" type="submit">Unfollow</a></button>
+        {% endfor %}
+    </div>
 
+    <div class="subscriber">
+
+        <h4 class="title_s">subscriber</h4>
+
+        {% for u in r_users %}
+        <p class="subscriber_username">user subscribed to my account : {{ u.user.username }}</p>
+        {% endfor %}
+    </div>
+
+</div>
 {% endblock %}
