@@ -12,51 +12,57 @@
     {% if post in ff %}
 
         <article class="ticket ticket_followed_user">
-            <div> author ticket : {{ post.user.username }}</div>
-            <div>date of creation : {{ post.time_created }}</div>
-            <div>title : {{ post.title }}</div>
-            <div>body : {{ post.description }}</div>
+            <div class="s"> author ticket : {{ post.user.username }}</div>
+            <div class="s">date of creation : {{ post.time_created }}</div>
+            <div class="s">title : {{ post.title }}</div>
+            <div class="s">description : {{ post.description }}</div>
 
-            <button><a href="{% url 'reviews-respond_ticket' post.id %}">Create Review</a></button>
+            <button class="s  btn_ticket_followed"><a href="{% url 'reviews-respond_ticket' post.id %}">Create Review</a></button>
         </article>
 
     {% elif post in rr %}
 
         <article class="ticket ticket_user">
-            <div> author ticket : {{ post.user.username }}</div>
-            <div>date of creation : {{ post.time_created }}</div>
-            <div>title : {{ post.title }}</div>
-            <div>body : {{ post.description }}</div>
+            <div class="s"> author ticket : {{ post.user.username }} ( myself )</div>
+            <div class="s">date of creation : {{ post.time_created }}</div>
+            <div class="s">title : {{ post.title }}</div>
+            <div class="s">description : {{ post.description }}</div>
         </article>
 
 
     {% elif post in f %}
 
         <article class="review review_followed_user">
-            <div> author review : {{ post.user.username }}</div>
-            <div>date of creation : {{ post.time_created }}</div>
-            <div>stars : {{ post.rating }}</div>
-            <div>headline : {{ post.headline }}</div>
-            <div>body : {{ post.body }}</div>
-            <div>{{ post.ticket.user }}</div>
-            <div>{{ post.ticket.time_created }}</div>
-            <div>{{ post.ticket.title }}</div>
-            <div>{{ post.ticket.description }}</div>
+            <div class="s"> author review : {{ post.user.username }}</div>
+            <div class="s">date of creation : {{ post.time_created }}</div>
+            <div class="s">stars : {{ post.rating }}</div>
+            <div class="s">headline : {{ post.headline }}</div>
+            <div class="s">Avis : {{ post.body }}</div>
+
+            <div class="wsd">
+                <p>Ticket</p>
+                <div class="s">Date of creation : {{ post.ticket.time_created }}</div>
+                <div class="s">Title : {{ post.ticket.title }}</div>
+                <div class="s">Description : {{ post.ticket.description }}</div>
+            </div>
         </article>
 
     
     {% elif post in r %}
 
         <article class="review review_user">
-            <div> author review : {{ post.user.username }}</div>
-            <div>date of creation : {{ post.time_created }}</div>
-            <div>stars : {{ post.rating }}</div>
-            <div>headline : {{ post.headline }}</div>
-            <div>body : {{ post.body }}</div>
-            <div>{{ post.ticket.user }}</div>
-            <div>{{ post.ticket.time_created }}</div>
-            <div>{{ post.ticket.title }}</div>
-            <div>{{ post.ticket.description }}</div>
+            <div class="s"> author review : {{ post.user.username }}</div>
+            <div class="s">date of creation : {{ post.time_created }}</div>
+            <div class="s">stars : {{ post.rating }}</div>
+            <div class="s">headline : {{ post.headline }}</div>
+            <div class="s">Avis : {{ post.body }}</div>
+
+            <div class="wsd">
+                <p>Ticket</p>
+                <div class="s">Date of creation : {{ post.ticket.time_created }}</div>
+                <div class="s">Title : {{ post.ticket.title }}</div>
+                <div class="s">Description : {{ post.ticket.description }}</div>
+            </div>
         </article>
 
     {% endif %}

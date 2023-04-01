@@ -1,38 +1,65 @@
 .principal_btn_flux {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    
- }
- .btn_create_ticket {
-    width: 450px;
-    height: 50px;
- }
- .btn_write_review {
-    width: 450px;
-    height: 50px;
- }
- 
- .ticket {
-    margin-top: 10px;
-    border: solid black;
-    height: 200px
- }
- .review {
-   margin-top: 10px;
-   border: solid black;
-   height: 200px
- }
- .review_followed_user {
-   background-color: salmon;
- }
- .review_user {
-   background-color: rgb(122, 144, 79);
- }
- .ticket_followed_user{
-   background-color: rgb(243, 163, 72)
- }
- .ticket_user{
-   background-color: cadetblue;
- }
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  
+}
+.btn_create_ticket {
+  width: 450px;
+  height: 50px;
+}
+.btn_write_review {
+  width: 450px;
+  height: 50px;
+}
+
+.ticket {
+  margin-top: 10px;
+  border: solid black;
+  height: 200px
+}
+.review {
+  margin-top: 10px;
+  border: solid black;
+  height: 400px;
+  font-weight: bold;
+  font-size: large;
+  padding-top: 20px;
+}
+.review_followed_user {
+background-color: salmon;
+padding-left: 20px;
+
+}
+.review_user {
+  background-color: rgb(122, 144, 79);
+}
+.ticket_followed_user {
+  padding-top: 10px;
+  padding-left: 20px;
+  font-size: larger;
+  font-weight: bold;
+  background-color: rgb(243, 163, 72)
+}
+.ticket_user{
+  background-color: cadetblue;
+  padding-top: 10px;
+  padding-left: 20px;
+  font-size: larger;
+  font-weight: bold;
+}
+.s {
+  margin-top: 8px;
+}
+.btn_ticket_followed {
+  width: 200px;
+  height: 30px;
+}
+.wsd {
+  border: solid black;
+  margin: 10px 10px 10px 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background-color: coral;
+}
  
